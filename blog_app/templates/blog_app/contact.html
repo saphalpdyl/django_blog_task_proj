@@ -1,0 +1,19 @@
+{% extends 'blog_app/base.html' %}
+{% block body %}
+
+<h2>Contact page</h2>
+
+<form method="POST">
+    {% csrf_token %}
+    <input type="text" name="name"/>
+    <input type="text" name="phone_no" />
+    <input type="email" name="email"/>
+    <textarea name="issue_description" ></textarea>
+    <input type="submit" value="Submit" />
+</form>
+
+{% endblock body %}
+
+{% block contactactive %}
+active
+{% endblock contactactive %}

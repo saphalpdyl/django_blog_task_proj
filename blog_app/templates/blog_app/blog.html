@@ -1,0 +1,17 @@
+{% extends 'blog_app/base.html' %}
+{% block body %}
+
+{% for blog in blogs %}
+<div class="blog-container">
+    <span class="blog-title">{{ blog.title }}</span>
+    <span class="blog-author">{{ blog.author }}</span>
+    <span class="blog-timestamp">{{ blog.timestamp }}</span>
+    <textarea class="blog-content"> {{ blog.content }} </textarea>
+</div>
+{% endfor %}
+
+{% endblock body %}
+
+{% block blogactive %}
+active
+{% endblock blogactive %}
