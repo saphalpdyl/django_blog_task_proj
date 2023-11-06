@@ -1,14 +1,24 @@
 {% extends 'blog_app/base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'blog_app/css/blog.css' %}" />
+{% endblock head %}
+
 {% block body %}
 
-{% for blog in blogs %}
-<div class="blog-container">
-    <span class="blog-title">{{ blog.title }}</span>
-    <span class="blog-author">{{ blog.author }}</span>
-    <span class="blog-timestamp">{{ blog.timestamp }}</span>
-    <textarea class="blog-content"> {{ blog.content }} </textarea>
+<div class="blog-wrapper">
+    {% for blog in blogs %}
+    <div class="blog-container">
+        <span class="blog-title">{{ blog.title }}</span>
+        <div class="blog-metadata-wrapper">
+            <span class="blog-author">{{ blog.author }}</span>
+            <span class="blog-timestamp">{{ blog.timestamp }}</span>
+        </div>
+        <p class="blog-content"> {{ blog.content }} </p>
+    </div>
+    {% endfor %}
 </div>
-{% endfor %}
 
 {% endblock body %}
 

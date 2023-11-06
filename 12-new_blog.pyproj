@@ -45,6 +45,7 @@
     <Compile Include="_12_new_blog\wsgi.py" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="blog_app\static\blog_app\css\blog.css" />
     <Content Include="blog_app\templates\blog_app\about.html" />
     <Content Include="blog_app\templates\blog_app\base.html" />
     <Content Include="blog_app\templates\blog_app\blog.html" />
@@ -55,6 +56,9 @@
   <ItemGroup>
     <Folder Include="blog_app\" />
     <Folder Include="blog_app\migrations\" />
+    <Folder Include="blog_app\static\" />
+    <Folder Include="blog_app\static\blog_app\" />
+    <Folder Include="blog_app\static\blog_app\css\" />
     <Folder Include="blog_app\templates\" />
     <Folder Include="blog_app\templates\blog_app\" />
     <Folder Include="_12_new_blog\" />
