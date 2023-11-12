@@ -1,10 +1,17 @@
+{% load static %}
+
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
     <title>Blog App From Django</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;500;700&family=Nunito:wght@200&family=Raleway:wght@200;300;400&family=Roboto+Condensed:wght@100;200;300&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;500;700&family=Nunito:wght@200&family=Raleway:wght@200;300;400&family=Roboto+Condensed:wght@100;200;300&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'blog_app\css\base.css' %}">
 
     {% block head %} {% endblock head %}
 
@@ -15,35 +22,86 @@
     </style>
 
 </head>
+
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Navbar</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link {% block homeactive %}{% endblock homeactive %}" aria-current="page" href="{% url 'home' %}">Home</a>
+                        <a class="nav-link {% block homeactive %}{% endblock homeactive %}" aria-current="page"
+                            href="{% url 'home' %}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% block aboutactive %}{% endblock aboutactive %}" href="{% url 'about' %}">About</a>
+                        <a class="nav-link {% block aboutactive %}{% endblock aboutactive %}"
+                            href="{% url 'about' %}">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% block contactactive %}{% endblock contactactive %}" href="{% url 'contact' %}">Contact</a>
+                        <a class="nav-link {% block contactactive %}{% endblock contactactive %}"
+                            href="{% url 'contact' %}">Contact</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% block blogactive %}{% endblock blogactive %}" href="{% url 'blog' %}">Blogs</a>
+                        <a class="nav-link {% block blogactive %}{% endblock blogactive %}"
+                            href="{% url 'blog' %}">Blogs</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% block blogpostactive %}{% endblock blogpostactive %}" href="{% url 'blog_post' %}">Post Blogs</a>
+                        <a class="nav-link {% block blogpostactive %}{% endblock blogpostactive %}"
+                            href="{% url 'blog_post' %}">Post Blogs</a>
                     </li>
+                    {% if request.user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link"
+                                href="#">My Blogs</a>
+                        </li>
+                    {% endif %}
                 </ul>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
+
+                {% if request.user.is_authenticated %}
+                <span class="user-info">Hello, {{request.user.username}} </span>
+                    <form action="{% url 'logout' %}" method="GET">
+                        <button class="btn btn-danger">Log out</button>
+                    </form>
+                {% else %}
+                    <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            Login
+                        </button>
+                {% endif %}
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <form action="{% url 'login' %}" method="POST" class="login-form">
+                                {% csrf_token %}
+                                
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Explore more blogs made for you. Login!</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                        <label for="username">Username</label>
+                                        <input type="text" name="username" id="modal-login-username">
+                                        <label for="password">Password</label>
+                                        <input type="password" name="password" id="modal-login-password">
+                                        <input class="btn btn-primary" type="submit" value="Login">
+
+                                        <div class="modal-register-wrapper">
+                                            <span><a href="#">Don't have an account ? Register Here.</a></span>
+                                        </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
@@ -52,6 +110,9 @@
         {% block body %}{% endblock body %}
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
 </body>
+
 </html>

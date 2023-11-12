@@ -12,8 +12,11 @@
     <div class="blog-container">
         <span class="blog-title">{{ blog.title }}</span>
         <div class="blog-metadata-wrapper">
-            <span class="blog-author">{{ blog.author }}</span>
+            <span class="blog-author">{{ blog.author.first_name }}</span>
             <span class="blog-timestamp">{{ blog.timestamp }}</span>
+        </div>          
+        <div class="blog-img-wrapper">
+            <img class="blog-img" src="{% get_media_prefix %}{{ blog.image }}" />
         </div>
         <p class="blog-content"> {{ blog.content }} </p>
     </div>

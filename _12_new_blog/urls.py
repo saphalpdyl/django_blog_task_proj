@@ -19,8 +19,10 @@ Including another URLconf
 # Uncomment next two lines to enable admin:
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
 
-from blog_app.views import about_view, blog_post_view, blog_view, contact_view, home_view
+from blog_app.views import about_view, blog_post_view, blog_view, contact_view, home_view, login_view , logout_view
 
 urlpatterns = [
     # Uncomment the next line to enable the admin:
@@ -30,4 +32,9 @@ urlpatterns = [
     path('blogpost/' , blog_post_view , name='blog_post'),
     path('' , home_view , name='home'),
     path('contact/' , contact_view , name='contact'),
+    path('login/' , login_view , name='login'),
+    path('logout/' , logout_view , name='logout'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

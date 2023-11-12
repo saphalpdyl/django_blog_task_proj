@@ -1,0 +1,11 @@
+.modal-body {
+    display:flex;
+    flex-direction: column;
+    gap: .7em;
+
+    padding: 1em 5em;
+}
+
+.modal-register-wrapper {
+    text-align: end;
+}
