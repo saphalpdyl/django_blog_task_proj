@@ -1,0 +1,27 @@
+{% load static %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'blog_app\css\register.css' %}">
+</head>
+
+<form method="POST" class="register-form">
+
+    <div class="register-cancel-wrappper">
+        <a href="{% url 'home' %}">x</a>
+    </div>
+    
+    {% csrf_token %}
+    
+    <label for="first_name">First Name</label>
+    <input type="text" name="first_name" id="register-first-name" required minlength="3" maxlength="15">
+
+    <label for="last_name">Last name</label>
+    <input type="text" name="last_name" id="register-last-name" >
+
+    <label for="email">Email</label>
+    <input type="email" name="email" id="register-email" required>
+
+    <label for="password">Password</label>
+    <input type="password" name="password" id="register-password" required minlength="6" >
+    <input type="submit" value="Register" id="register-submit">
+</form>

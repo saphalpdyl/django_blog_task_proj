@@ -1,8 +1,9 @@
-from os import name
+from uu import Error
 from django.shortcuts import render, redirect
 from django.http import HttpRequest, HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login , logout , authenticate
+from django.contrib.auth.models import User
 from django.urls import reverse_lazy
 
 from blog_app.models import BlogModel, ContactModel
@@ -53,8 +54,6 @@ def login_view(request: HttpRequest) :
         username = request.POST['username']
         password = request.POST['password']
 
-        print("Somebody Logged in as {}".format(username))
-
         user = authenticate(request, username=username , password=password)
 
         if user : 
@@ -72,3 +71,23 @@ def logout_view(request: HttpRequest) :
             return redirect(reverse_lazy('blog'))
     
     return redirect(reverse_lazy('home'))
+
+def register_view(request: HttpRequest) :
+
+    if request.method == "POST" : 
+        first_name = request.POST['first_name']
+        last_name = request.POST['last_name']
+        email = request.POST['email']
+        password = request.POST['password']
+
+        # Check for existing email
+        if User.objects.filter(email=email).exists() : 
+            print("User already exists")
+            return redirect(reverse_lazy('register'))
+        
+        # Register the user
+        User.objects.create_user(username=first_name, first_name=first_name, last_name=last_name, email=email, password=password)
+        return redirect(reverse_lazy('home'))
+        
+    
+    return render(request, 'blog_app/register.html')

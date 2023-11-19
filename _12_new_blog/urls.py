@@ -22,10 +22,9 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 
-from blog_app.views import about_view, blog_post_view, blog_view, contact_view, home_view, login_view , logout_view
+from blog_app.views import about_view, blog_post_view, blog_view, contact_view, home_view, login_view , logout_view , register_view
 
 urlpatterns = [
-    # Uncomment the next line to enable the admin:
     path('admin/', admin.site.urls),
     path('blog/' , blog_view , name='blog'),
     path('about/' , about_view , name='about'),
@@ -34,6 +33,7 @@ urlpatterns = [
     path('contact/' , contact_view , name='contact'),
     path('login/' , login_view , name='login'),
     path('logout/' , logout_view , name='logout'),
+    path('register/', register_view, name='register')
 ]
 
 if settings.DEBUG:

@@ -1,0 +1,46 @@
+.register-form { 
+    /* Display */
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
+
+    /* Measurements */
+    width: 20%;
+    padding: 2em 4em;
+
+    /* Borders and Shadows */
+    border-radius: 6px;
+
+    /* Colors and Fonts */
+    background-color: #f7f7f7;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.register-cancel-wrappper {
+    display: flex;
+    justify-content: end;
+}
+
+.register-cancel-wrappper > a {
+    outline: none;
+    border: none;
+    text-decoration: none;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: monospace;
+
+    height: 50px;
+    width: 50px;
+
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 1px solid #0001;
+    border-radius: 50%;
+}

@@ -1,15 +1,27 @@
 {% extends 'blog_app/base.html' %}
+{% load static %}
 {% block body %}
 
-<h2>Contact page</h2>
+<head>
+    <link rel="stylesheet" href="{% static 'blog_app\css\contact.css' %}">
+</head>
 
-<form method="POST">
+<h2>Contact page</h2>
+<form method="POST" class="contact-form">
     {% csrf_token %}
-    <input type="text" name="name"/>
-    <input type="text" name="phone_no" />
-    <input type="email" name="email"/>
-    <textarea name="issue_description" ></textarea>
-    <input type="submit" value="Submit" />
+
+    <label for="name">Who're you?</label>
+    <input type="text" name="name" id="contact-name" placeholder="John Doe" required/>
+
+    <label for="phone_no">Your Phone number </label>
+    <input type="text" name="phone_no" id="contact-phone-no" placeholder="+97798XXXXXXXX" />
+
+    <label for="email">Your Email</label>
+    <input type="email" name="email" id="contact-email" placeholder="johndoe@examplemail.com"/>
+
+    <label for="issue_description">A short description of your request</label>
+    <textarea name="issue_description" id="contact-desc" placeholder="I request you to......" ></textarea>
+    <input type="submit" value="Submit"  id="contact-submit"/>
 </form>
 
 {% endblock body %}

@@ -9,3 +9,7 @@
 .modal-register-wrapper {
     text-align: end;
 }
+
+body {
+    padding: 1em;
+}

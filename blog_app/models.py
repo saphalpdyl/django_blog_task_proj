@@ -15,7 +15,7 @@ class BlogModel(models.Model) :
 
 class ContactModel(models.Model) :
     name = models.CharField(max_length=50, blank=False)
-    phone_no = models.IntegerField(blank=True , null=True)
-    sender = models.ForeignKey(User , on_delete=models.CASCADE)
+    phone_no = models.CharField(max_length=15, blank=True , null=True)
+    # sender = models.ForeignKey(User , on_delete=models.CASCADE)
     email = models.EmailField(blank=True) # Blank = True for testing purpose
     issue_description = models.TextField(blank=True, null=True)
