@@ -56,9 +56,15 @@
                     </li>
                     {% if request.user.is_authenticated %}
                         <li class="nav-item">
-                            <a class="nav-link"
+                            <a class="nav-link {% block myblogsactive %}{% endblock myblogsactive %}"
                                 href="#">My Blogs</a>
                         </li>
+                        {% if request.user.is_staff %}
+                        <li class="nav-item">
+                            <a class="nav-link {% block showissuesactive %}{% endblock showissuesactive %}"
+                             href="{% url 'show_issues' %}">Show Issues</a>
+                        </li>
+                        {% endif %}
                     {% endif %}
                 </ul>
 

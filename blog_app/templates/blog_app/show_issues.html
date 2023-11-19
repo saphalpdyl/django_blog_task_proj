@@ -1,0 +1,26 @@
+{% extends "blog_app/base.html" %}
+{% load static %}
+
+{% block showissuesactive %}active{% endblock showissuesactive %}
+
+{% block body %}
+
+<table class='table table-striped table-hover'>
+    <tr>
+        <th scope="col" >Issuer Name</td>
+        <th scope="col" >Phone number</td>
+        <th scope="col" >Email</td>
+        <th scope="col" >Description</td>
+    </tr>
+
+    {% for issue in issues %}
+    <tr>
+        <td class="table-information">{{ issue.name }}</td>
+        <td class="table-information">{{ issue.phone_no|default:"-" }}</td>
+        <td class="table-information">{{ issue.email|default:"-" }}</td>
+        <td class="table-information">{{ issue.issue_description }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock body %}
