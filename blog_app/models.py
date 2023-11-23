@@ -10,9 +10,6 @@ class BlogModel(models.Model) :
     timestamp = models.DateTimeField(auto_now_add=True)
     slug = models.CharField(max_length=30 , blank=True)
 
-    class Meta : 
-        ordering = ['timestamp']
-
 class ContactModel(models.Model) :
     name = models.CharField(max_length=50, blank=False)
     phone_no = models.CharField(max_length=15, blank=True , null=True)

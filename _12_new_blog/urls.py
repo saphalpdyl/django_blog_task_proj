@@ -22,7 +22,7 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 
-from blog_app.views import about_view, blog_post_view, blog_view, contact_view, home_view, login_view , logout_view , register_view, show_issues_view
+from blog_app.views import about_view, blog_post_view, blog_view, contact_view, home_view, login_view , logout_view , register_view, show_issues_view , search
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -34,7 +34,8 @@ urlpatterns = [
     path('login/' , login_view , name='login'),
     path('logout/' , logout_view , name='logout'),
     path('register/', register_view, name='register'),
-    path('show_issues/', show_issues_view, name='show_issues')
+    path('show_issues/', show_issues_view, name='show_issues'),
+    path('search/', search, name='search' )
 ]
 
 if settings.DEBUG:

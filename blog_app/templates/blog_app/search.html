@@ -1,0 +1,9 @@
+{% extends "blog_app/base.html" %}
+
+{% block body %}
+{% for blog_post in all_post %}
+    
+<h1> {{ blog_post.title }} </h1>
+
+{% endfor %}
+{% endblock body %}
